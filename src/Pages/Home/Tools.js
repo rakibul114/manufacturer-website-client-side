@@ -14,11 +14,11 @@ const Tools = () => {
 
     return (
       <div>
-        <h2 className="text-center text-4xl text-primary font-bold my-10">
+        <h2 className="text-center text-4xl text-primary font-bold my-24">
           OUR TOOLS
         </h2>
-        <div className='container lg:mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 px-12'>
-          {tools.map((tool) => (
+        <div className="container lg:mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 px-12">
+          {tools.slice(0, 6).map((tool) => (
             <Tool key={tool._id} tool={tool}></Tool>
           ))}
         </div>

@@ -4,7 +4,7 @@ import CountUp from "react-countup";
 
 const BusinessSummary = () => {
     return (
-      <div className="text-center">
+      <div className="text-center my-24">
         <div className="grid grid-cols-3 bg-info my-12 p-10">
           <div>
             <h1 className="text-2xl">OVER</h1>
