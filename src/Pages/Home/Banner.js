@@ -11,18 +11,18 @@ import HightLightBanner from './HightLightBanner';
 const Banner = () => {
     return (
       <div>
-        <div class="carousel w-full autoplay: true">
-          <div id="item1" class="carousel-item w-full">
-            <img src={slide1} class="w-full" alt="" />
+        <div className="carousel w-full autoplay: true">
+          <div id="item1" className="carousel-item w-full">
+            <img src={slide1} className="w-full" alt="" />
           </div>
-          <div id="item2" class="carousel-item w-full">
-            <img src={slide2} class="w-full" alt="" />
+          <div id="item2" className="carousel-item w-full">
+            <img src={slide2} className="w-full" alt="" />
           </div>
-          <div id="item3" class="carousel-item w-full">
-            <img src={slide3} class="w-full" alt="" />
+          <div id="item3" className="carousel-item w-full">
+            <img src={slide3} className="w-full" alt="" />
           </div>
-          <div id="item4" class="carousel-item w-full">
-            <img src={slide4} class="w-full" alt="" />
+          <div id="item4" className="carousel-item w-full">
+            <img src={slide4} className="w-full" alt="" />
           </div>
         </div>        
         <HightLightBanner></HightLightBanner>

@@ -23,8 +23,8 @@ const Reviews = () => {
             interval={2000}
           >
             <div>
-              <div class="card w-96 bg-base-100 shadow-2xl mx-auto my-6">
-                <div class="card-body">
+              <div className="card w-96 bg-base-100 shadow-2xl mx-auto my-6">
+                <div className="card-body">
                   <p>
                     <small>
                       Timbecon was amazing, I had a very specific requirement
@@ -34,7 +34,7 @@ const Reviews = () => {
                     </small>
                   </p>
                   <div>
-                    <div class="card-actions justify-center items-center">
+                    <div className="card-actions justify-center items-center">
                       <img style={{ width: "50px" }} src={client1} alt="" />
                       <div>
                         <p>Hodges Brandy</p>
@@ -46,8 +46,8 @@ const Reviews = () => {
               </div>
             </div>
             <div>
-              <div class="card w-96 bg-base-100 shadow-2xl mx-auto my-6">
-                <div class="card-body">
+              <div className="card w-96 bg-base-100 shadow-2xl mx-auto my-6">
+                <div className="card-body">
                   <p>
                     <small>
                       I searched everywhere at local hardware stores for help
@@ -56,7 +56,7 @@ const Reviews = () => {
                     </small>
                   </p>
                   <div>
-                    <div class="card-actions justify-center items-center">
+                    <div className="card-actions justify-center items-center">
                       <img style={{ width: "50px" }} src={client2} alt="" />
                       <div>
                         <p>Penelope Howell</p>
@@ -68,8 +68,8 @@ const Reviews = () => {
               </div>
             </div>
             <div>
-              <div class="card w-96 bg-base-100 shadow-2xl mx-auto my-6">
-                <div class="card-body">
+              <div className="card w-96 bg-base-100 shadow-2xl mx-auto my-6">
+                <div className="card-body">
                   <p>
                     <small>
                       My company needed to upgrade our machining capability with
@@ -79,7 +79,7 @@ const Reviews = () => {
                     </small>
                   </p>
                   <div>
-                    <div class="card-actions justify-center items-center">
+                    <div className="card-actions justify-center items-center">
                       <img style={{ width: "50px" }} src={client3} alt="" />
                       <div>
                         <p>Marissa Phillips</p>
@@ -91,8 +91,8 @@ const Reviews = () => {
               </div>
             </div>
             <div>
-              <div class="card w-96 bg-base-100 shadow-2xl mx-auto my-6">
-                <div class="card-body">
+              <div className="card w-96 bg-base-100 shadow-2xl mx-auto my-6">
+                <div className="card-body">
                   <p>
                     <small>
                       They supplied all the necessary tools for carpentry
@@ -101,7 +101,7 @@ const Reviews = () => {
                     </small>
                   </p>
                   <div>
-                    <div class="card-actions justify-center items-center">
+                    <div className="card-actions justify-center items-center">
                       <img style={{ width: "50px" }} src={client4} alt="" />
                       <div>
                         <p>Tamika Mcpherson</p>

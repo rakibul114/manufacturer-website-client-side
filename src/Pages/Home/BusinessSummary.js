@@ -1,6 +1,7 @@
 import React from 'react';
 import CountUp from "react-countup";
 
+
 const BusinessSummary = () => {
     return (
       <div className="text-center">
