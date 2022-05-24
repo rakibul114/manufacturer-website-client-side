@@ -1,8 +1,18 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/timbecon-logo.png';
+import auth from '../../firebase.init';
 
 const Navbar = () => {
+  const [user] = useAuthState(auth);  
+
+  const handleSignOut = () => {
+    signOut(auth);
+  };
+
+
     return (
       <div>
         <div className="bg-accent">
@@ -47,17 +57,33 @@ const Navbar = () => {
                     </li>
                   </ul>
                 </div>
-                <Link className="btn btn-ghost normal-case text-xl" as={Link} to='/' >
+                <Link
+                  className="btn btn-ghost normal-case text-xl"
+                  as={Link}
+                  to="/"
+                >
                   <img style={{ height: "40px" }} src={logo} alt="" />
                 </Link>
               </div>
               <div className="navbar-end hidden lg:flex">
                 <nav className="menu menu-horizontal p-0 text-white font-bold text-xl">
-                    <Link as={Link} to='/'>Home</Link>
-                  <Link className='mx-4' as={Link} to='/tools'>Tools</Link>
-                  <Link as={Link} to='/about'>About</Link>
-                  <Link className='ml-4' as={Link} to='/login'>Login</Link>
-                  
+                  <Link as={Link} to="/">
+                    Home
+                  </Link>
+                  <Link className="mx-4" as={Link} to="/tools">
+                    Tools
+                  </Link>
+                  <Link className="mr-4" as={Link} to="/about">
+                    About
+                  </Link>
+                  {user ? (
+                    
+                    <button onClick={handleSignOut}>Sign Out</button>
+                  ) : (
+                    <Link className="ml-4" as={Link} to="/login">
+                      Login
+                    </Link>
+                  )}
                 </nav>
               </div>
             </div>

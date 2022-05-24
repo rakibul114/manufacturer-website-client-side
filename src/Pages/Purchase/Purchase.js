@@ -12,7 +12,7 @@ const Purchase = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setTool(data));
-  }, []);
+  }, [toolId]);
 
   return (
     <div>
