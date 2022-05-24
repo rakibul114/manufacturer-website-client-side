@@ -16,7 +16,7 @@ const ProjectDeal = () => {
             Ready to discuss your next project big or small?
           </h1>
           <div>
-            <button class="btn btn-warning px-10">
+            <button className="btn btn-warning px-10">
               <span className="text-neutral">contact us now</span>
             </button>
           </div>

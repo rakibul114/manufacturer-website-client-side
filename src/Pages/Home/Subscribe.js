@@ -16,14 +16,14 @@ const Subscribe = () => {
           <input
             type="email"
             placeholder="Email Address"
-            class="input input-bordered w-full max-w-xs rounded-full block"
+            className="input input-bordered w-full max-w-xs rounded-full block"
           />
           <input
             type="text"
             placeholder="Your Name"
-            class="input input-bordered w-full max-w-xs rounded-full block my-3"
+            className="input input-bordered w-full max-w-xs rounded-full block my-3"
           />
-          <button class="btn btn-warning rounded-full px-10">Subscribe</button>
+          <button className="btn btn-warning rounded-full px-10">Subscribe</button>
         </div>
       </div>
     );

@@ -5,10 +5,9 @@ const Tools = () => {
     const [tools, setTools] = useState([]);
 
     useEffect(() => {
-        const url = 'tools.json';
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setTools(data));
+        fetch("http://localhost:5000/tool")
+          .then((res) => res.json())
+          .then((data) => setTools(data));
     }, []);
 
 
@@ -18,8 +17,8 @@ const Tools = () => {
           OUR TOOLS
         </h2>
         <div className="container lg:mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 px-12">
-          {tools.slice(0, 6).map((tool) => (
-            <Tool key={tool._id} tool={tool}></Tool>
+          {tools.slice(0, 6).map((singleTool) => (
+            <Tool key={singleTool._id} singleTool={singleTool}></Tool>
           ))}
         </div>
       </div>
