@@ -1,12 +1,16 @@
 import React, { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import signupImg from '../../assets/sign-up.jpeg';
 import auth from '../../firebase.init';
+import { toast } from 'react-toastify';
+import SocialLogin from './SocialLogin';
 
 const Register = () => {
     const [createUserWithEmailAndPassword, user, loading, error] =
-      useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  
     const navigate = useNavigate();
     const nameRef = useRef('');
     const emailRef = useRef("");
@@ -18,18 +22,24 @@ const Register = () => {
       const email = emailRef.current.value;
         const password = passwordRef.current.value;
         
-        createUserWithEmailAndPassword(email, password);
+      await createUserWithEmailAndPassword(email, password);
+      await updateProfile({ displayName: name });
+      toast("Updated profile");
+      console.log('Updated profile');
+      navigate("/");
 
         event.target.reset();      
     };
 
     const navigateToRegister = () => {
       navigate("/register");
-    };
+  };
+  
+  if (user) {
+    console.log('user', user);
+  }
 
-    if (user) {
-        navigate('/');
-    }
+    
 
 
     return (
@@ -76,8 +86,10 @@ const Register = () => {
               <span className="text-green-600">Please Login</span>
             </Link>
           </p>
+          <div class="divider">OR</div>
+          <SocialLogin></SocialLogin>
         </div>
-
+        {/*Banner*/}
         <div className="mx-auto">
           <img className="rounded-md" src={signupImg} alt="" />
         </div>

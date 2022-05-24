@@ -57,7 +57,7 @@ const BusinessSummary = () => {
               </CountUp>
             </div>
             <div>
-              <h3 className="text-xl">YEARS OF EXPERIENCE</h3>
+              <h3 className="text-xl">YEARS OF SERVICES</h3>
             </div>
           </div>
           {/*third*/}

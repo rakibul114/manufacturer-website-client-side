@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import loginImg from '../../assets/login-img.jpeg';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import SocialLogin from './SocialLogin';
 
 const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] =
@@ -88,19 +89,18 @@ const Login = () => {
           </p>
           <p className="">
             Forget password?{" "}
-            <button
-              className=""
-              onClick={resetPassword}
-            >
+            <button className="" onClick={resetPassword}>
               Reset Password
             </button>
           </p>
+          <div class="divider">OR</div>
+          <SocialLogin></SocialLogin>
         </div>
         {/*Banner*/}
         <div className="mx-auto">
           <img className="rounded-md" src={loginImg} alt="" />
-            </div>
-            <ToastContainer/>
+        </div>
+        <ToastContainer />
       </div>
     );
 };
