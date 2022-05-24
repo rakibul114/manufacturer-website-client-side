@@ -11,7 +11,7 @@ const Login = () => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        console.log(email, password);
+        event.target.reset();
     };
 
     const navigateToRegister = () => {
@@ -21,8 +21,8 @@ const Login = () => {
 
 
     return (
-      <div className="container mx-auto px-10 my-24 grid grid-cols-1 md:grid-cols-2 lg:grid items-center">
-        <div className="mx-auto">
+      <div className="container mx-auto px-10 my-24 grid grid-cols-1 md:grid-cols-2 lg:grid items-center md:gap-x-16 gap-y-6">
+        <div className="mx-auto bg-info p-6 rounded-md">
           <h1 className="text-center text-3xl mb-4">Please Login</h1>
           <form onSubmit={handleLogin}>
             <label htmlFor="email">Email</label>
@@ -30,33 +30,35 @@ const Login = () => {
               ref={emailRef}
               type="email"
               placeholder="Your Email"
-              className="input input-bordered w-full max-w-xs mb-2" required
+              className="input input-bordered w-full max-w-xs mb-2"
+              required
             />
             <label htmlFor="password">Password</label>
             <input
               ref={passwordRef}
               type="password"
               placeholder="Your Password"
-              className="input input-bordered w-full max-w-xs block" required
+              className="input input-bordered w-full max-w-xs block"
+              required
             />
-            <button className="btn px-36 block mt-6 bg-primary text-white">
+            <button className="btn px-32 block mt-6 bg-primary text-white">
               login
             </button>
           </form>
           <p className="mt-2">
-            New to Genius Car?{" "}
+            Don't have an account?{" "}
             <Link
               to="/register"
               className="text-danger text-decoration-none"
               onClick={navigateToRegister}
             >
-              Please Register
+              <span className="text-red-600">Please Register</span>
             </Link>
           </p>
         </div>
 
         <div className="mx-auto">
-          <img src={loginImg} alt="" />
+          <img className="rounded-md" src={loginImg} alt="" />
         </div>
       </div>
     );
