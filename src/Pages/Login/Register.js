@@ -5,11 +5,12 @@ import signupImg from '../../assets/sign-up.jpeg';
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import SocialLogin from './SocialLogin';
+import Loading from '../Shared/Loading';
 
 const Register = () => {
     const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [updateProfile, updating] = useUpdateProfile(auth);
   
     const navigate = useNavigate();
     const nameRef = useRef('');
@@ -32,14 +33,16 @@ const Register = () => {
     };
 
     const navigateToRegister = () => {
-      navigate("/register");
+      navigate("/login");
   };
+
+  if (loading || updating) {
+    return <Loading></Loading>;
+  }
   
   if (user) {
     console.log('user', user);
-  }
-
-    
+  }    
 
 
     return (
@@ -86,7 +89,7 @@ const Register = () => {
               <span className="text-green-600">Please Login</span>
             </Link>
           </p>
-          <div class="divider">OR</div>
+          <div className="divider">OR</div>
           <SocialLogin></SocialLogin>
         </div>
         {/*Banner*/}

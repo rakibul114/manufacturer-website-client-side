@@ -54,7 +54,7 @@ const SocialLogin = () => {
             Continue with Google
           </button>
         </div>
-        {errorElement}
+        <p className='text-red-600'>{errorElement}</p>
         {/*Facebook login */}
         <div className="">
           <button

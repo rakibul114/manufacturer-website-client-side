@@ -33,7 +33,16 @@ const Login = () => {
 
     if (user) {
         navigate(from, { replace: true });
-    }
+  }
+  let errorElement;
+  
+  if (error) {
+    errorElement = (
+      <div>
+        <p className="text-danger">Error: {error?.message}</p>
+      </div>
+    );
+  }
 
     const navigateToRegister = () => {
         navigate('/register');
@@ -77,6 +86,7 @@ const Login = () => {
               login
             </button>
           </form>
+          <p className='text-red-600'>{errorElement}</p>
           <p className="mt-2">
             Don't have an account?{" "}
             <Link
@@ -93,7 +103,7 @@ const Login = () => {
               Reset Password
             </button>
           </p>
-          <div class="divider">OR</div>
+          <div className="divider">OR</div>
           <SocialLogin></SocialLogin>
         </div>
         {/*Banner*/}
