@@ -9,8 +9,7 @@ import auth from '../../firebase.init';
 const Purchase = () => {
    const [user] = useAuthState(auth);  
   const { toolId } = useParams();
-  const [tool, setTool] = useState({});
-  console.log(tool);
+  const [tool, setTool] = useState({});  
 
   useEffect(() => {
     const url = `http://localhost:5000/tool/${toolId}`;
@@ -28,123 +27,110 @@ const Purchase = () => {
       address: event.target.address.value,
       phone: event.target.phone.value,
     };
-    axios
-      .post("https://secret-island-02232.herokuapp.com/order", order)
-      .then((response) => {
-        const { data } = response;
-        if (data.insertedId) {
-          toast("Your order is booked!");
-          event.target.reset();
-        }
-      });
+    axios.post("http://localhost:5000/order", order).then((response) => {      
+      const { data } = response;
+      console.log(data);
+      if (data.insertedId) {
+        toast("Your order is booked!");
+        event.target.reset();
+      }
+    });
   };
 
 
   return (
-    <div>
+    <div className="mb-10">
       <h2 className="text-center text-3xl mt-5">
         You are about to order: {tool.name}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 justify-center items-center mt-10">
         {/*Tool photo and info*/}
-        <div className="justify-center items-center p-10 mx-auto">
-          <div className="container mx-auto">
-            <div class="overflow-x-auto w-auto">
-              <table class="table w-auto">
-                {/* head */}
-                <thead>
-                  <tr>
-                    <th>Tool Sample</th>
-                    <th>Available Quantity</th>
-                    <th>Minimum Order</th>
-                    <th>Price (per unit)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* row 1 */}
-                  <tr>
-                    <td>
-                      <div class="flex items-center space-x-3">
-                        <div class="avatar">
-                          <div class="mask mask-squircle w-24 h-24">
-                            <img src={tool.image} alt="" />
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p className="text-2xl">
-                        {tool.available} <span>pcs</span>
-                      </p>
-                    </td>
-                    <td>
-                      <p className="text-2xl">
-                        {tool.minimumOrder} <span>pcs</span>
-                      </p>
-                    </td>
-                    <td>
-                      <p className="text-2xl">${tool.price}</p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+        <div className="card lg:w-96 md:w-80 w-80 bg-base-100 shadow-xl mx-auto">
+          <figure>
+            <img style={{ height: "180px" }} src={tool.image} alt="Shoes" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">Product: {tool.name}</h2>
+            <p>
+              Available Quantity: {tool.available} <span>pcs</span>
+            </p>
+            <p>
+              Price: ${tool.price} <span>per unit</span>{" "}
+            </p>
+            <div>
+              <p>
+                Minimum Order: <span>pcs</span>
+              </p>
+              <input
+                type="number"
+                value={tool.minimumOrder}
+                className="input input-bordered w-full max-w-xs"
+              />
+            </div>
+            <div className="card-actions justify-center">
+              <button className="btn btn-primary">
+                <span className="text-white">Increase</span>
+              </button>
+              <button className="btn btn-primary">
+                <span className="text-white">Decrease</span>
+              </button>
             </div>
           </div>
         </div>
         {/*form*/}
-        <div className="mx-auto">
+        <div className="mx-auto bg-base-100 shadow-xl p-7 rounded-2xl">
           <form onSubmit={handlePlaceOrder} className="flex flex-col">
             <input
-              className="w-80 mb-2 p-4"
+              className="w-80 mb-2 p-4 border-2 rounded-md"
               type="text"
               name="name"
               value={user?.displayName}
-              id=""
+              id="name"
               placeholder="Name"
               required
               readOnly
               disabled
             />
             <input
-              className="w-80 mb-2 p-4"
+              className="w-80 mb-2 p-4 border-2 rounded-md"
               type="email"
               name="email"
               value={user?.email}
-              id=""
+              id="email"
               placeholder="Email"
               required
               readOnly
               disabled
             />
             <input
-              className="w-80 mb-2 p-4"
+              className="w-80 mb-2 p-4 border-2 rounded-md"
               type="text"
               value={tool.name}
               name="service"
-              id=""
+              id="name"
               placeholder="Service"
               required
               readOnly
             />
             <input
-              className="w-80 mb-2 p-4"
+              className="w-80 mb-2 p-4 border-2 rounded-md"
               type="text"
               name="address"
-              id=""
+              id="address"
               placeholder="Address"
               autoComplete="off"
               required
             />
             <input
-              className="w-80 mb-2 p-4"
+              className="w-80 mb-2 p-4 border-2 rounded-md"
               type="text"
               name="phone"
-              id=""
+              id="phone"
               placeholder="Phone"
               required
             />
             <input
-              className="btn btn-primary mb-10"
+              className="btn btn-primary mb-5"
               type="submit"
               value="Place Order"
             />

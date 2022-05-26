@@ -1,23 +1,32 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import loginImg from '../../assets/login-img.jpeg';
 import auth from '../../firebase.init';
+import useToken from '../../hooks/useToken';
 import Loading from '../Shared/Loading';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] =
         useSignInWithEmailAndPassword(auth);
-     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  const [token] = useToken(user);
     
     const navigate = useNavigate();    
     const emailRef = useRef('');
     const passwordRef = useRef('');
     const location = useLocation();
 
-    let from = location.state?.from?.pathname || "/";
+  let from = location.state?.from?.pathname || "/";
+  
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
+
     const handleLogin = event => {
         event.preventDefault();
         const email = emailRef.current.value;
@@ -25,22 +34,20 @@ const Login = () => {
 
         signInWithEmailAndPassword(email, password);
         event.target.reset();
-    };
-
-    if (loading || sending) {
-        return <Loading></Loading>;
-    }
-
-    if (user) {
-        navigate(from, { replace: true });
-  }
-  let errorElement;
+    };  
   
+
+  let signInError;
+
+  if (loading || sending) {
+    return <Loading></Loading>;
+  }
+
   if (error) {
-    errorElement = (
-      <div>
-        <p className="text-danger">Error: {error?.message}</p>
-      </div>
+    signInError = (
+      <p className="text-red-500">
+        <small>{error?.message}</small>
+      </p>
     );
   }
 
@@ -86,7 +93,7 @@ const Login = () => {
               login
             </button>
           </form>
-          <p className='text-red-600'>{errorElement}</p>
+          {signInError}
           <p className="mt-2">
             Don't have an account?{" "}
             <Link

@@ -6,11 +6,14 @@ import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import SocialLogin from './SocialLogin';
 import Loading from '../Shared/Loading';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
     const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    const [updateProfile, updating] = useUpdateProfile(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  
+  const [token] = useToken(user);
   
     const navigate = useNavigate();
     const nameRef = useRef('');
@@ -27,7 +30,7 @@ const Register = () => {
       await updateProfile({ displayName: name });
       toast("Updated profile");
       console.log('Updated profile');
-      navigate("/");
+      navigate("/tools");
 
         event.target.reset();      
     };
@@ -39,10 +42,22 @@ const Register = () => {
   if (loading || updating) {
     return <Loading></Loading>;
   }
+
+  let registerError;
+
+  if (error || updateError) {
+    registerError = (
+      <p className="text-red-500">
+        <small>
+          {error?.message || updateError?.message}
+        </small>
+      </p>
+    );
+  }
   
-  if (user) {
-    console.log('user', user);
-  }    
+  if (token) {
+    navigate("/");
+  }  
 
 
     return (
@@ -75,6 +90,7 @@ const Register = () => {
               className="input input-bordered w-full max-w-xs block"
               required
             />
+            {registerError}
             <button className="btn px-32 block mt-6 bg-primary text-white">
               Register
             </button>

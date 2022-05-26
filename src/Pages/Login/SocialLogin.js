@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import googleIcon from '../../assets/google.png';
 import facebookIcon from '../../assets/facebook.png';
 import Loading from '../Shared/Loading';
-
-
+import useToken from '../../hooks/useToken';
 
 
 const SocialLogin = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  const [signInWithFacebook, user2, loading2, error2] =
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [signInWithFacebook, fUser, fLoading, fError] =
     useSignInWithFacebook(auth);
+  
+  const [token] = useToken(gUser || fUser);
   
 
   const navigate = useNavigate();
@@ -20,26 +21,29 @@ const SocialLogin = () => {
 
   let from = location.state?.from?.pathname || "/";
 
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
+ 
 
-  let errorElement;
-
-  if (loading || loading2) {
+  if (gLoading || fLoading) {
     return <Loading></Loading>;
   }
 
-  if (error || error2) {
+
+  let errorElement;
+
+  if (gError || fError) {
     errorElement = (
       <div>
         <p className="text-danger">
-          Error: {error?.message} {error2?.message}
+          Error: {gError?.message} {fError?.message}
         </p>
       </div>
     );
-  }
-
-  if (user || user2) {
-    navigate(from, { replace: true });
-  }
+  } 
 
 
     return (
