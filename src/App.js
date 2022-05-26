@@ -10,6 +10,7 @@ import Home from './Pages/Home/Home';
 import Tools from './Pages/Home/Tools';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Login/Register';
+import RequireAdmin from './Pages/Login/RequireAdmin';
 import RequireAuth from './Pages/Login/RequireAuth';
 import Purchase from './Pages/Purchase/Purchase';
 import Navbar from './Pages/Shared/Navbar';
@@ -44,7 +45,11 @@ function App() {
           <Route path="addReview" element={<AddReview></AddReview>}></Route>
           <Route
             path="users"
-            element={ <Users></Users> }
+            element={
+              <RequireAdmin>
+                <Users></Users>
+              </RequireAdmin>
+            }
           ></Route>
         </Route>
 

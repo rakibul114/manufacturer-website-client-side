@@ -38,7 +38,7 @@ const Navbar = () => {
       )}
       <li>
         {user ? (
-          <button onClick={logout} className="btn btn-ghost">Sign Out</button>
+          <button onClick={logout} className="btn btn-ghost text-xl">Sign Out</button>
         ) : (
           <Link to="/login">
             Login
@@ -50,7 +50,7 @@ const Navbar = () => {
 
 
     return (
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-primary">
         <div className="navbar">
           <div className="dropdown">
             <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -59,7 +59,7 @@ const Navbar = () => {
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke="white"
               >
                 <path
                   strokeLinecap="round"
@@ -80,8 +80,8 @@ const Navbar = () => {
             <img style={{ height: "40px" }} src={logo} alt="" />
           </a>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">{menuItems}</ul>
+        <div className="navbar-center hidden lg:flex py-5">
+          <ul className="menu menu-horizontal p-0 text-xl text-white">{menuItems}</ul>
         </div>
         <div className="navbar-end">
           <label
@@ -94,7 +94,7 @@ const Navbar = () => {
               className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
+              stroke="white"
             >
               <path
                 strokeLinecap="round"

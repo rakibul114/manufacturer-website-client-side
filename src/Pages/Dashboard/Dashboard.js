@@ -7,7 +7,7 @@ import useAdmin from '../../hooks/useAdmin';
 
 const Dashboard = () => {
     const [user] = useAuthState(auth);
-    // const [admin] = useAdmin(user);
+    const [admin] = useAdmin(user);
 
 
     return (
@@ -35,9 +35,9 @@ const Dashboard = () => {
               <Link to="/dashboard/addReview">Add a Review</Link>
             </li>
             <li>
-              <Link to="/dashboard/addProduct">For all</Link>
+              <Link to="/dashboard/myProfile">My Profile</Link>
             </li>
-           {/* {admin && (
+           {admin && (
               <>
                 <li>
                   <Link to="/dashboard/manageOrders">Manage Orders</Link>
@@ -46,10 +46,13 @@ const Dashboard = () => {
                   <Link to="/dashboard/addProduct">Add a Product</Link>
                 </li>
                 <li>
+                  <Link to="/dashboard/makeAdmin">Make Admin</Link>
+                </li>
+                <li>
                   <Link to="/dashboard/manageProducts">Manage Products</Link>
                 </li>
               </>
-           )}*/}
+           )}
           </ul>
         </div>
       </div>
