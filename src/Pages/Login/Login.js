@@ -13,6 +13,7 @@ const Login = () => {
         useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const [token] = useToken(user);
+  console.log(user);
     
     const navigate = useNavigate();    
     const emailRef = useRef('');

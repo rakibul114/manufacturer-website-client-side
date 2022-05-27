@@ -4,8 +4,7 @@ const useToolDetail = (toolId) => {
   const [tool, setTool] = useState({});
 
   useEffect(() => {
-    const url = `https://calm-fjord-47074.herokuapp.com/tool/${toolId}`;
-    console.log(url);
+    const url = `http://localhost:5000/tool/${toolId}`;    
     fetch(url)
       .then((res) => res.json())
       .then((data) => setTool(data));
