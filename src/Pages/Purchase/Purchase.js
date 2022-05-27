@@ -1,18 +1,17 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import auth from '../../firebase.init';
-
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import auth from "../../firebase.init";
 
 const Purchase = () => {
-   const [user] = useAuthState(auth);  
+  const [user] = useAuthState(auth);
   const { toolId } = useParams();
-  const [tool, setTool] = useState({});  
+  const [tool, setTool] = useState({});
 
   useEffect(() => {
-    const url = `http://localhost:5000/tool/${toolId}`;
+    const url = `https://calm-fjord-47074.herokuapp.com/tool/${toolId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setTool(data));
@@ -27,16 +26,17 @@ const Purchase = () => {
       address: event.target.address.value,
       phone: event.target.phone.value,
     };
-    axios.post("http://localhost:5000/order", order).then((response) => {      
-      const { data } = response;
-      console.log(data);
-      if (data.insertedId) {
-        toast("Your order is booked!");
-        event.target.reset();
-      }
-    });
+    axios
+      .post("https://calm-fjord-47074.herokuapp.com/order", order)
+      .then((response) => {
+        const { data } = response;
+        console.log(data);
+        if (data.insertedId) {
+          toast("Your order is booked!");
+          event.target.reset();
+        }
+      });
   };
-
 
   return (
     <div className="mb-10">

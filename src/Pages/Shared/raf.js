@@ -161,4 +161,71 @@ const Navbar = () => {
 
 export default Navbar;
 
+// home banner
+<div className="carousel w-full autoplay: true">
+  {/*previous */}
+  <div id="item4" className="carousel-item w-full">
+    <img src={slide4} className="w-full" alt="" />
+  </div>
+</div>; 
+
+
+<Carousel
+  style={{
+    position: "absolute",
+    display: "block",
+    zIndex: -2,
+    minHeight: "100%",
+    opacity: 0,
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
+  }}
+  autoPlay={true}
+  infiniteLoop={true}
+  showArrows={false}
+  showStatus={false}
+  showIndicators={false}
+  showThumbs={false}
+  interval={2000}
+>
+  <div>
+    <div className="bg-base-100 mx-auto">
+      <div className="card-body">
+        <div className="card-actions justify-center items-center">
+          <img src={slide1} alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  {/* slide 2 */}
+  <div className="bg-base-100 mx-auto">
+    <div className="card-body">
+      <div>
+        <div className="card-actions justify-center items-center">
+          <img src={slide2} alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  {/* slide 3 */}
+  <div className="bg-base-100 mx-auto">
+    <div className="card-body">
+      <div className="card-actions justify-center items-center">
+        <img src={slide3} alt="" />
+      </div>
+    </div>
+  </div>
+  {/* slide 4 */}
+
+  <div className="bg-base-100 mx-auto w-it">
+    <div className="card-body">
+      <div className="card-actions justify-center items-center">
+        <img src={slide4} alt="" />
+      </div>
+    </div>
+  </div>
+</Carousel>;
+
 

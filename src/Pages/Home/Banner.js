@@ -1,4 +1,7 @@
 import React from 'react';
+import Slider from "react-slick";
+
+
 // images for slide
 import slide1 from '../../assets/banner/slide1.jpg';
 import slide2 from "../../assets/banner/slide2.jpg";
@@ -9,22 +12,36 @@ import HightLightBanner from './HightLightBanner';
 
 
 const Banner = () => {
+    const settings = {
+      dots: false,
+      fade: true,
+      infinite: true,
+      autoplay: true,
+      speed: 2000,
+      autoplaySpeed: 2000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      
+    };
+
     return (
       <div>
-        <div className="carousel w-full autoplay: true">
-          <div id="item1" className="carousel-item w-full">
-            <img src={slide1} className="w-full" alt="" />
-          </div>
-          <div id="item2" className="carousel-item w-full">
-            <img src={slide2} className="w-full" alt="" />
-          </div>
-          <div id="item3" className="carousel-item w-full">
-            <img src={slide3} className="w-full" alt="" />
-          </div>
-          <div id="item4" className="carousel-item w-full">
-            <img src={slide4} className="w-full" alt="" />
-          </div>
-        </div>        
+        <div className="mx-auto">
+          <Slider {...settings}>
+            <div>
+              <img src={slide1} alt="" />
+            </div>
+            <div>
+              <img src={slide2} alt="" />
+            </div>
+            <div>
+              <img src={slide3} alt="" />
+            </div>
+            <div>
+              <img src={slide4} alt="" />
+            </div>
+          </Slider>
+        </div>
         <HightLightBanner></HightLightBanner>
       </div>
     );

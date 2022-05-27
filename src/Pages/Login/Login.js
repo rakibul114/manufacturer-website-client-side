@@ -79,7 +79,7 @@ const Login = () => {
               type="email"
               placeholder="Your Email"
               className="input input-bordered w-full max-w-xs mb-2"
-              required
+              required              
             />
             <label htmlFor="password">Password</label>
             <input

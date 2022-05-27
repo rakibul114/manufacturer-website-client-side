@@ -30,7 +30,7 @@ const Register = () => {
       await updateProfile({ displayName: name });
       toast("Updated profile");
       console.log('Updated profile');
-      navigate("/tools");
+      navigate("/");
 
         event.target.reset();      
     };
