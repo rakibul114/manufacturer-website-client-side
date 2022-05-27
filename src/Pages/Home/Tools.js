@@ -8,7 +8,7 @@ const Tools = () => {
     fetch("https://calm-fjord-47074.herokuapp.com/tool")
       .then((res) => res.json())
       .then((data) => setTools(data));
-  }, []);
+  }, [tools]);
 
   return (
     <div>
