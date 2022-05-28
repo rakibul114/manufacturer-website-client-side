@@ -9,6 +9,7 @@ import ManageOrders from './Pages/Dashboard/ManageOrders';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
 import MyOrders from './Pages/Dashboard/MyOrders';
 import MyProfile from './Pages/Dashboard/MyProfile';
+import Payment from './Pages/Dashboard/Payment';
 import Users from './Pages/Dashboard/Users';
 import Home from './Pages/Home/Home';
 import Tools from './Pages/Home/Tools';
@@ -49,6 +50,7 @@ function App() {
           <Route index element={<MyProfile />}></Route>
           <Route path="addReview" element={<AddReview />}></Route>
           <Route path="myOrders" element={<MyOrders />}></Route>
+          <Route path="payment/:id" element={<Payment></Payment>}></Route>
           <Route path="manageOrders" element={<ManageOrders />}></Route>
           <Route path="addProduct" element={<AddProduct />}></Route>
           <Route path="manageProducts" element={<ManageProducts />}></Route>
@@ -62,11 +64,11 @@ function App() {
           ></Route>
         </Route>
 
-        <Route path="/about" element={<About/>}></Route>
-        <Route path="/blog" element={<Blog/>}></Route>
-        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="/blog" element={<Blog />}></Route>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
-        <Route path="*" element={<NotFound/>}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </div>
   );
