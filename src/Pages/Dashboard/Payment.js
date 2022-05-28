@@ -1,4 +1,3 @@
-import { CFormCheck } from '@coreui/react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
@@ -45,7 +44,7 @@ const Payment = () => {
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
               <div className="card-body">
                 <Elements stripe={stripePromise}>
-                  <CheckoutForm />
+                  <CheckoutForm order={order} />
                 </Elements>
               </div>
             </div>

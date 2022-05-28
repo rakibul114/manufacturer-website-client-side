@@ -1,11 +1,14 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ order }) => {    
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('');
+    const [success, setSuccess] = useState('');
     const [clientSecret, setClientSecret] = useState("");
+
+    const { price, email, clientName  } = order;
 
     useEffect(() => {
       fetch("http://localhost:5000/create-payment-intent", {
@@ -23,7 +26,7 @@ const CheckoutForm = () => {
           }
         });
     }, [price]);
-    
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -42,7 +45,28 @@ const CheckoutForm = () => {
 
         
         setCardError(error?.message || '');
-        
+        setSuccess("");
+
+        // confirm card payment
+        const { paymentIntent, error: intentError } =
+          await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+              card: card,
+              billing_details: {
+                name: clientName,
+                email: email,
+              },
+            },
+          });
+        if (intentError) {
+            setCardError(intentError?.message);
+            
+        }
+        else {
+            setCardError('');
+            console.log(paymentIntent);
+            setSuccess('Congrats! Your payment is completed.');
+        }
 
     };
 
@@ -69,14 +93,13 @@ const CheckoutForm = () => {
           <button
             className="btn btn-success btn-sm mt-3"
             type="submit"
-            disabled={!stripe}
+            disabled={!stripe || !clientSecret}
           >
             Pay
           </button>
-            </form>
-            {
-                cardError && <p className='text-red-500'>{cardError }</p>
-            }
+        </form>
+        {cardError && <p className="text-red-500">{cardError}</p>}
+        {success && <p className="text-green-500">{success}</p>}
       </>
     );
 };

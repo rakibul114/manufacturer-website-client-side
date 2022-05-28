@@ -14,6 +14,7 @@ const Purchase = () => {
   const handlePlaceOrder = (event) => {
     event.preventDefault();
     const order = {
+      clientName: user.displayName,
       email: user.email,
       tool: tool.name,
       toolId: toolId,
