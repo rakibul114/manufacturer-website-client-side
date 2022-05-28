@@ -1,5 +1,5 @@
 import React from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const UserRow = ({ user, refetch }) => {
   const { email, role } = user;
@@ -37,6 +37,7 @@ const UserRow = ({ user, refetch }) => {
       <td>
         <button className="btn btn-xs">Remove User</button>
       </td>
+      <ToastContainer></ToastContainer>
     </tr>
   );
 };

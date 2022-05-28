@@ -9,7 +9,9 @@ import useToolDetail from "../../hooks/useToolDetail";
 const Purchase = () => {
   const { toolId } = useParams();
   const [tool] = useToolDetail(toolId);
-  const [user] = useAuthState(auth);  
+  console.log(tool);
+  const [user] = useAuthState(auth);
+  
 
   const handlePlaceOrder = (event) => {
     event.preventDefault();
@@ -17,6 +19,9 @@ const Purchase = () => {
       email: user.email,
       tool: tool.name,
       toolId: toolId,
+      available: tool.available,
+      minimumOrder: tool.minimumOrder,
+      price: tool.price,
       address: event.target.address.value,
       phone: event.target.phone.value,
     };
@@ -111,7 +116,33 @@ const Purchase = () => {
               name="service"
               id="name"
               placeholder="Service"
-              required
+              readOnly
+            />
+            <input
+              className="w-80 mb-2 p-4 border-2 rounded-md"
+              type="text"
+              value={"Available quantity: " + tool.available + "pcs"}
+              name="service"
+              id="name"
+              placeholder="Service"
+              readOnly
+            />
+            <input
+              className="w-80 mb-2 p-4 border-2 rounded-md"
+              type="text"
+              value={"Minimum order: " + tool.minimumOrder + "pcs"}
+              name="service"
+              id="name"
+              placeholder="Service"
+              readOnly
+            />
+            <input
+              className="w-80 mb-2 p-4 border-2 rounded-md"
+              type="text"
+              value={tool.name}
+              name="service"
+              id="name"
+              placeholder="Service"
               readOnly
             />
             <input
@@ -140,7 +171,7 @@ const Purchase = () => {
         </div>
       </div>
     </div>
-    );
+  );
     
   };
   

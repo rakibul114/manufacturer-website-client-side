@@ -28,8 +28,7 @@ const Register = () => {
         
       await createUserWithEmailAndPassword(email, password);
       await updateProfile({ displayName: name });
-      toast("Updated profile");
-      console.log('Updated profile');
+      toast("Updated profile");      
       navigate("/");
 
         event.target.reset();      

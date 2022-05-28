@@ -12,8 +12,7 @@ const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] =
         useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
-  const [token] = useToken(user);
-  console.log(user);
+  const [token] = useToken(user);  
     
     const navigate = useNavigate();    
     const emailRef = useRef('');
