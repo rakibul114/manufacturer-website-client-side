@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
 import useToolDetail from "../../hooks/useToolDetail";
 
@@ -168,17 +167,6 @@ const Purchase = () => {
           </form>
         </div>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </div>
   );
     

@@ -1,8 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './Pages/About/About';
+import Blog from './Pages/Blog/Blog';
+import AddProduct from './Pages/Dashboard/AddProduct';
 import AddReview from './Pages/Dashboard/AddReview';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import ManageOrders from './Pages/Dashboard/ManageOrders';
+import ManageProducts from './Pages/Dashboard/ManageProducts';
 import MyOrders from './Pages/Dashboard/MyOrders';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import Users from './Pages/Dashboard/Users';
@@ -23,41 +27,46 @@ function App() {
     <div>
       <Navbar></Navbar>
       <Routes>
-        <Route path="/" element={<Home></Home>}></Route>
-        <Route path="/tools" element={<Tools></Tools>}></Route>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/tools" element={<Tools />}></Route>
         <Route
           path="/tool/:toolId"
           element={
             <RequireAuth>
-              <Purchase></Purchase>
+              <Purchase />
             </RequireAuth>
           }
         ></Route>
-        <Route path="/register" element={<Register></Register>}></Route>
+
         <Route
           path="/dashboard"
           element={
             <RequireAuth>
-              <Dashboard></Dashboard>
+              <Dashboard />
             </RequireAuth>
           }
         >
-          <Route index element={<MyProfile></MyProfile>}></Route>
-          <Route path="addReview" element={<AddReview></AddReview>}></Route>
-          <Route path="myOrders" element={<MyOrders></MyOrders>}></Route>
+          <Route index element={<MyProfile />}></Route>
+          <Route path="addReview" element={<AddReview />}></Route>
+          <Route path="myOrders" element={<MyOrders />}></Route>
+          <Route path="manageOrders" element={<ManageOrders />}></Route>
+          <Route path="addProduct" element={<AddProduct />}></Route>
+          <Route path="manageProducts" element={<ManageProducts />}></Route>
           <Route
             path="users"
             element={
               <RequireAdmin>
-                <Users></Users>
+                <Users />
               </RequireAdmin>
             }
           ></Route>
         </Route>
 
-        <Route path="/about" element={<About></About>}></Route>
-        <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="*" element={<NotFound></NotFound>}></Route>
+        <Route path="/about" element={<About/>}></Route>
+        <Route path="/blog" element={<Blog/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="*" element={<NotFound/>}></Route>
       </Routes>
     </div>
   );
