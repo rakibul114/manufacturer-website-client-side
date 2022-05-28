@@ -7,9 +7,8 @@ import useToolDetail from "../../hooks/useToolDetail";
 
 const Purchase = () => {
   const { toolId } = useParams();
-  const [tool] = useToolDetail(toolId);  
+  const [tool] = useToolDetail(toolId);
   const [user] = useAuthState(auth);
-  
 
   const handlePlaceOrder = (event) => {
     event.preventDefault();
@@ -25,7 +24,7 @@ const Purchase = () => {
       phone: event.target.phone.value,
     };
     axios.post("http://localhost:5000/order", order).then((response) => {
-      const { data } = response;      
+      const { data } = response;
       if (data.insertedId) {
         alert("Your order is booked!");
         event.target.reset();
@@ -41,7 +40,6 @@ const Purchase = () => {
   //   if (newProduct.length <= 0) {
   //     return;
   //   }
-
 
   return (
     <div className="mb-10">
@@ -170,10 +168,6 @@ const Purchase = () => {
       </div>
     </div>
   );
-    
-  };
-  
-  export default Purchase;
+};
 
-
-
+export default Purchase;

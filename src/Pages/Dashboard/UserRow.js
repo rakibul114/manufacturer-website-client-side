@@ -18,7 +18,7 @@ const UserRow = ({ user, refetch, index }) => {
       .then((data) => {
         if (data.modifiedCount > 0) {
           refetch();
-         alert(`Successfully made an admin`);
+          alert(`Successfully made an admin`);
         }
       });
   };
@@ -37,7 +37,6 @@ const UserRow = ({ user, refetch, index }) => {
         <td>
           <button className="btn btn-xs btn-error">Remove User</button>
         </td>
-        
       </tr>
     </>
   );

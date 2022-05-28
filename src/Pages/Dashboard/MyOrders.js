@@ -31,12 +31,12 @@ const MyOrders = () => {
           setOrders(data);
         });
     }
-  }, [user,navigate]);
+  }, [user, navigate]);
 
   const deleteTool = (id) => {
     const proceed = window.confirm("Are you Sure?");
     if (proceed) {
-      const url = `http://localhost:5000/order/${id}`;      
+      const url = `http://localhost:5000/order/${id}`;
       axios.delete(url, orders).then((response) => {
         const { data } = response;
         const remaining = orders.filter((item) => item._id !== id);
