@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import auth from "../../firebase.init";
+import auth from "../firebase.init";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -36,7 +36,8 @@ const MyOrders = () => {
   const deleteTool = (id) => {
     const proceed = window.confirm("Are you Sure?");
     if (proceed) {
-      const url = `http://localhost:5000/order/${id}`;      
+      const url = `http://localhost:5000/order/${id}`;
+      console.log(url);
       axios.delete(url, orders).then((response) => {
         const { data } = response;
         const remaining = orders.filter((item) => item._id !== id);
@@ -52,7 +53,7 @@ const MyOrders = () => {
     <div className="container mx-auto px-10">
       <h2 className="text-center text-2xl my-5">My Orders: {orders.length}</h2>
       <div className="overflow-x-auto">
-        <table className="table table-compact w-full">
+        <table className="table w-full">
           <thead>
             <tr>
               <th>No</th>
@@ -69,9 +70,9 @@ const MyOrders = () => {
               <tr key={od._id}>
                 <th>{index + 1}</th>
                 <td>{od.tool}</td>
-                <td>{od.minimumOrder}</td>
+                <td>{od.available}</td>
                 <td>{od.price}</td>
-                <td>{parseInt(od.minimumOrder * od.price)}</td>
+                <td>{parseInt(od.available * od.price)}</td>
                 <td>
                   {od.price && !od.paid && (
                     <Link to={`/dashboard/payment/${od._id}`}>

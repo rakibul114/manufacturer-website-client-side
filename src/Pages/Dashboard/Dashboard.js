@@ -19,7 +19,7 @@ const Dashboard = () => {
         />
         <div className="drawer-content">
           {/*<!-- Page content here -->*/}
-          <h2 className="text-3xl font-bold text-purple-600 text-center">
+          <h2 className="text-3xl font-bold text-primary text-center">
             Welcome to your Dashboard
           </h2>
           <Outlet></Outlet>
@@ -36,24 +36,18 @@ const Dashboard = () => {
             </li>
             <li>
               <Link to="/dashboard/addReview">Add a Review</Link>
-            </li>
-
-            <li>
-              <Link to="/dashboard/users">All Users</Link>
-            </li>
-            {admin && (
+            </li>           
+           {admin && (
               <>
                 <li>
                   <Link to="/dashboard/manageOrders">Manage Orders</Link>
                 </li>
                 <li>
                   <Link to="/dashboard/addProduct">Add a Product</Link>
-                </li>
-                {/*{" "}
+                </li>                
                 <li>
                   <Link to="/dashboard/users">All Users</Link>
-                </li>{" "}
-                */}
+                </li>{" "}                
                 <li>
                   <Link to="/dashboard/manageProducts">Manage Products</Link>
                 </li>

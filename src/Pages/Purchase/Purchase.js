@@ -2,14 +2,13 @@ import axios from "axios";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
 import useToolDetail from "../../hooks/useToolDetail";
 
 const Purchase = () => {
   const { toolId } = useParams();
-  const [tool] = useToolDetail(toolId);
-  console.log(tool);
+  const [tool] = useToolDetail(toolId);  
   const [user] = useAuthState(auth);
   
 
@@ -26,10 +25,9 @@ const Purchase = () => {
       phone: event.target.phone.value,
     };
     axios.post("http://localhost:5000/order", order).then((response) => {
-      const { data } = response;
-      console.log(data);
+      const { data } = response;      
       if (data.insertedId) {
-        toast("Your order is booked!");
+        alert("Your order is booked!");
         event.target.reset();
       }
     });
@@ -170,6 +168,17 @@ const Purchase = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
     
