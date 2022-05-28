@@ -23,13 +23,15 @@ const Purchase = () => {
       address: event.target.address.value,
       phone: event.target.phone.value,
     };
-    axios.post("http://localhost:5000/order", order).then((response) => {
-      const { data } = response;
-      if (data.insertedId) {
-        alert("Your order is booked!");
-        event.target.reset();
-      }
-    });
+    axios
+      .post("https://afternoon-sierra-85387.herokuapp.com/order", order)
+      .then((response) => {
+        const { data } = response;
+        if (data.insertedId) {
+          alert("Your order is booked!");
+          event.target.reset();
+        }
+      });
   };
 
   // // Decrease quantity

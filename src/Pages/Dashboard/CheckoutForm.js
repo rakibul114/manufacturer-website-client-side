@@ -10,17 +10,20 @@ const CheckoutForm = ({ order }) => {
   const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
 
-  const { _id ,price, email, clientName } = order;
+  const { _id, price, email, clientName } = order;
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({ price }),
-    })
+    fetch(
+      "https://afternoon-sierra-85387.herokuapp.com/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify({ price }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
@@ -71,7 +74,7 @@ const CheckoutForm = ({ order }) => {
         appointment: _id,
         transactionId: paymentIntent.id,
       };
-      fetch(`http://localhost:5000/order${_id}`, {
+      fetch(`https://afternoon-sierra-85387.herokuapp.com/order${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
@@ -118,7 +121,10 @@ const CheckoutForm = ({ order }) => {
       {success && (
         <div className="text-green-500">
           <p>{success}</p>
-          <p>Your transaction Id: <span className="text-orange-500 font-bold">{ transactionId}</span></p>
+          <p>
+            Your transaction Id:{" "}
+            <span className="text-orange-500 font-bold">{transactionId}</span>
+          </p>
         </div>
       )}
     </>

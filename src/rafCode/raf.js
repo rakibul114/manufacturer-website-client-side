@@ -13,12 +13,15 @@ const MyOrders = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/order?email=${user.email}`, {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
+      fetch(
+        `https://afternoon-sierra-85387.herokuapp.com/order?email=${user.email}`,
+        {
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
         .then((res) => {
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
@@ -36,7 +39,7 @@ const MyOrders = () => {
   const deleteTool = (id) => {
     const proceed = window.confirm("Are you Sure?");
     if (proceed) {
-      const url = `http://localhost:5000/order/${id}`;
+      const url = `https://afternoon-sierra-85387.herokuapp.com/order/${id}`;
       console.log(url);
       axios.delete(url, orders).then((response) => {
         const { data } = response;

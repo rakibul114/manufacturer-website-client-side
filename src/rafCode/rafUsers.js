@@ -9,7 +9,7 @@ const Users = () => {
     isLoading,
     refetch,
   } = useQuery("user", () =>
-    fetch("http://localhost:5000/user", {
+    fetch("https://afternoon-sierra-85387.herokuapp.com/user", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -57,7 +57,7 @@ import Loading from '../Shared/Loading';
 
 const Users = () => {
   const { data: users, isLoading } = useQuery("users", () =>
-    fetch("http://localhost:5000/user").then((res) => res.json())
+    fetch("https://afternoon-sierra-85387.herokuapp.com/user").then((res) => res.json())
   );
 
   if (isLoading) {
