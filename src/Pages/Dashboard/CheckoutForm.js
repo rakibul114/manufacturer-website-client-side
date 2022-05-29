@@ -44,12 +44,13 @@ const CheckoutForm = ({ order }) => {
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
-      card,
+      card
     });
 
     setCardError(error?.message || "");
     setSuccess("");
     setProcessing(true);
+
     // confirm card payment
     const { paymentIntent, error: intentError } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -61,6 +62,7 @@ const CheckoutForm = ({ order }) => {
           },
         },
       });
+    
     if (intentError) {
       setCardError(intentError?.message);
       setProcessing(false);
@@ -71,18 +73,18 @@ const CheckoutForm = ({ order }) => {
       setSuccess("Congrats! Your payment is completed.");
       //store payment on database
       const payment = {
-        appointment: _id,
-        transactionId: paymentIntent.id,
+        order: _id,
+        transactionId: paymentIntent.id
       };
-      fetch(`https://afternoon-sierra-85387.herokuapp.com/order${_id}`, {
+      // update card info database
+      fetch(`https://afternoon-sierra-85387.herokuapp.com/order/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-        body: JSON.stringify(payment),
-      })
-        .then((res) => res.json())
+        body: JSON.stringify(payment)
+      }).then((res) => res.json())
         .then((data) => {
           setProcessing(false);
           console.log(data);
@@ -112,7 +114,7 @@ const CheckoutForm = ({ order }) => {
         <button
           className="btn btn-success btn-sm mt-3"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret || success}
         >
           Pay
         </button>

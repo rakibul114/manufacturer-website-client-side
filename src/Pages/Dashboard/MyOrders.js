@@ -34,7 +34,7 @@ const MyOrders = () => {
           setOrders(data);
         });
     }
-  }, [user, navigate]);
+  }, [user]);
 
   const deleteTool = (id) => {
     const proceed = window.confirm("Are you Sure?");
@@ -81,7 +81,7 @@ const MyOrders = () => {
                       <button className="btn btn-xs btn-success">Pay</button>
                     </Link>
                   )}
-                  {od.price && od.paid && (
+                  {(od.price && od.paid) && 
                     <div>
                       <p>
                         <span className="text-success">Paid</span>
@@ -91,7 +91,7 @@ const MyOrders = () => {
                         <span className="text-success">{od.transactionId}</span>
                       </p>
                     </div>
-                  )}
+                  }
                 </td>
                 <td>
                   <button

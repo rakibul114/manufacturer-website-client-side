@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
 import useToolDetail from "../../hooks/useToolDetail";
 
@@ -28,7 +29,7 @@ const Purchase = () => {
       .then((response) => {
         const { data } = response;
         if (data.insertedId) {
-          alert("Your order is booked!");
+          toast('Your order is book');
           event.target.reset();
         }
       });
@@ -167,6 +168,7 @@ const Purchase = () => {
             />
           </form>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );

@@ -34,6 +34,9 @@ const Navbar = () => {
       <li>
         <Link to="/blog">Blog</Link>
       </li>
+      <li>
+        <Link to="/portfolio">My Portfolio</Link>
+      </li>
       {user && (
         <li>
           <Link to="/dashboard">Dashboard</Link>
@@ -41,11 +44,11 @@ const Navbar = () => {
       )}
       <li>
         {user ? (
-          <button onClick={logout} className="btn btn-ghost text-xl">Sign Out</button>
+          <button onClick={logout} className="btn btn-ghost text-xl">
+            Sign Out
+          </button>
         ) : (
-          <Link to="/login">
-            Login
-          </Link>
+          <Link to="/login">Login</Link>
         )}
       </li>
     </>
