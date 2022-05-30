@@ -15,18 +15,16 @@ const Blog = () => {
               <p className="font-bold">
                 Here are some steps to improve React App performance:
               </p>
-              <div>
-                <p className="font-semibold">1. useMemo():</p>
-                <p>
-                  This is a React hook that is used to cache functions in React,
-                  CPU-expensive functions. We have an expensive function expFunc
-                  that takes 3 mins to execute, it takes an input count waits
-                  for 3 mins before returning the multiple of 90. We have a
-                  variable resCount that calls the expFunc with the count
-                  variable from the useState hook. We have an input that sets
-                  the count state whenever we type anything.
-                </p>
-              </div>
+              <p className="font-semibold">1. useMemo():</p>
+              <p>
+                This is a React hook that is used to cache functions in React,
+                CPU-expensive functions. We have an expensive function expFunc
+                that takes 3 mins to execute, it takes an input count waits for
+                3 mins before returning the multiple of 90. We have a variable
+                resCount that calls the expFunc with the count variable from the
+                useState hook. We have an input that sets the count state
+                whenever we type anything.
+              </p>
             </p>
           </div>
           <div>

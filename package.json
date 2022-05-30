@@ -13,6 +13,7 @@
     "custom-react-accordion": "^1.0.4",
     "daisyui": "^2.15.0",
     "firebase": "^9.8.1",
+    "flowbite": "^1.4.7",
     "react": "^18.1.0",
     "react-accessible-accordion": "^5.0.0",
     "react-animated-progress-bar": "^1.0.4",
@@ -30,6 +31,7 @@
     "react-slick": "^0.29.0",
     "react-toastify": "^8.2.0",
     "slick-carousel": "^1.8.1",
+    "tw-elements": "^1.0.0-alpha12",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
