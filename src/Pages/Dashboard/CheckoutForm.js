@@ -6,7 +6,7 @@ const CheckoutForm = ({ order }) => {
   const elements = useElements();
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
-  const [processing, setProcessing] = useState(false);
+  const [setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
 
@@ -42,9 +42,10 @@ const CheckoutForm = ({ order }) => {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    //, paymentMethod
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
-      card
+      card,
     });
 
     setCardError(error?.message || "");
@@ -62,7 +63,7 @@ const CheckoutForm = ({ order }) => {
           },
         },
       });
-    
+
     if (intentError) {
       setCardError(intentError?.message);
       setProcessing(false);
@@ -74,7 +75,7 @@ const CheckoutForm = ({ order }) => {
       //store payment on database
       const payment = {
         order: _id,
-        transactionId: paymentIntent.id
+        transactionId: paymentIntent.id,
       };
       // update card info database
       fetch(`https://afternoon-sierra-85387.herokuapp.com/order/${_id}`, {
@@ -83,8 +84,9 @@ const CheckoutForm = ({ order }) => {
           "content-type": "application/json",
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-        body: JSON.stringify(payment)
-      }).then((res) => res.json())
+        body: JSON.stringify(payment),
+      })
+        .then((res) => res.json())
         .then((data) => {
           setProcessing(false);
           console.log(data);

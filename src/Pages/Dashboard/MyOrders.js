@@ -34,7 +34,7 @@ const MyOrders = () => {
           setOrders(data);
         });
     }
-  }, [user]);
+  }, [user, navigate]);
 
   const deleteTool = (id) => {
     const proceed = window.confirm("Are you Sure?");

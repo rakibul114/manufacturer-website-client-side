@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Tool = ({ singleTool }) => {
+  console.log(singleTool);
   const { _id, image, price, minimumOrder, available, name, description } =
     singleTool;
 
@@ -22,7 +23,7 @@ const Tool = ({ singleTool }) => {
           <p title={description}>
             {description.length >= 20 ? description.slice(0, 50) : description}
             ...
-          </p>
+  </p>
           <p>
             Minimum Order: {minimumOrder}{" "}
             <span className="text-secondary">pcs</span>
